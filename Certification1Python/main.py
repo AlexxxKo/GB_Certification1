@@ -1,6 +1,7 @@
 from datetime import datetime
 import json
 
+id = 0
 def main():
     while True:
         print("\n1. Добавить заметку")
@@ -27,12 +28,13 @@ def main():
 
 def add_note():
     notes = load_notes()
-    note_id = len(notes) + 1
+    global id
+    id = id + 1
     title = input("Введите заголовок заметки: ")
     body = input("Введите текст заметки: ")
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     note = {
-        "id": note_id,
+        "id": id,
         "title": title,
         "body": body,
         "timestamp": timestamp
@@ -88,7 +90,7 @@ def filter_notes_by_date():
         if filtered_notes:
             print("Заметки за выбранную дату:")
             for note in filtered_notes:
-                print(f"ID: {note['id']}, Заголовок: {note['title']}, Текст: {note['body']}")
+                print(f"ID: {note['id']}; Заголовок: {note['title']}; Текст: {note['body']}")
         else:
             print("Заметки за выбранную дату не найдены.")
     except ValueError:
@@ -100,7 +102,7 @@ def print_notes():
     if notes:
         print("Список заметок:")
         for note in notes:
-            print(f"ID: {note['id']}, Заголовок: {note['title']}, Текст: {note['body']}, Дата/время: {note['timestamp']}")
+            print(f"ID: {note['id']}; Заголовок: {note['title']}; Текст: {note['body']}; Дата/время: {note['timestamp']}")
     else:
         print("Список заметок пуст.")
 
