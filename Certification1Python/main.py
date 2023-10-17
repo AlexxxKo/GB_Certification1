@@ -74,9 +74,11 @@ def save_notes(notes):
         json.dump(notes, file)
 
 def load_notes():
+    global id
     try:
         with open("notes.json", "r") as file:
             notes = json.load(file)
+            id = notes[-1]['id']
     except FileNotFoundError:
         notes = []
     return notes
